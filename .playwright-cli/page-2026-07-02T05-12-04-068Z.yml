@@ -1,0 +1,194 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e1074]:
+    - banner [ref=f2e1075]:
+      - generic [ref=f2e1076]:
+        - generic [ref=f2e1077]: PW
+        - generic [ref=f2e1078]:
+          - heading "PitWall XR" [level=1] [ref=f2e1079]
+          - generic [ref=f2e1080]: 2025 Bahrain Grand Prix
+      - generic [ref=f2e1081]:
+        - generic [ref=f2e1082]: REPLAY
+        - generic [ref=f2e1083]: 0:00
+      - generic "Workspace controls" [ref=f2e1084]:
+        - button "XR" [ref=f2e1085] [cursor=pointer]
+        - button "TRK" [pressed] [ref=f2e1086] [cursor=pointer]
+        - button "SYN" [ref=f2e1087] [cursor=pointer]
+        - button "Save" [ref=f2e1088] [cursor=pointer]
+        - button "RST" [ref=f2e1089] [cursor=pointer]
+        - button "DIM" [ref=f2e1090] [cursor=pointer]
+      - generic [ref=f2e1091]:
+        - button "Sessions" [ref=f2e1092] [cursor=pointer]
+        - button "Sign out" [ref=f2e1093] [cursor=pointer]
+    - generic [ref=f2e1094]:
+      - generic [ref=f2e1095]:
+        - generic [ref=f2e1096]:
+          - generic [ref=f2e1097]:
+            - generic [ref=f2e1098]:
+              - strong [ref=f2e1099]: "5"
+              - generic [ref=f2e1100]: open feeds
+            - generic [ref=f2e1101]:
+              - strong [ref=f2e1102]: "20"
+              - generic [ref=f2e1103]: available
+            - button "Hide feeds" [ref=f2e1104] [cursor=pointer]
+            - button "Add all views" [ref=f2e1105] [cursor=pointer]
+          - complementary [ref=f2e1106]:
+            - generic [ref=f2e1107]:
+              - strong [ref=f2e1108]: F1 TV views
+              - generic [ref=f2e1109]: 25 available
+            - generic [ref=f2e1110]:
+              - heading "Broadcast" [level=3] [ref=f2e1111]
+              - generic [ref=f2e1112]:
+                - button "INTERNATIONAL INTERNATIONAL" [disabled] [ref=f2e1113]:
+                  - generic [ref=f2e1114]: INTERNATIONAL
+                  - strong [ref=f2e1115]: INTERNATIONAL
+                - button "PRES F1 LIVE" [ref=f2e1116] [cursor=pointer]:
+                  - generic [ref=f2e1117]: PRES
+                  - strong [ref=f2e1118]: F1 LIVE
+                - button "WIF INTERNATIONAL" [ref=f2e1119] [cursor=pointer]:
+                  - generic [ref=f2e1120]: WIF
+                  - strong [ref=f2e1121]: INTERNATIONAL
+            - generic [ref=f2e1122]:
+              - heading "Race data" [level=3] [ref=f2e1123]
+              - generic [ref=f2e1124]:
+                - button "TRACKER TRACKER" [disabled] [ref=f2e1125]:
+                  - generic [ref=f2e1126]: TRACKER
+                  - strong [ref=f2e1127]: TRACKER
+                - button "DATA DATA" [disabled] [ref=f2e1128]:
+                  - generic [ref=f2e1129]: DATA
+                  - strong [ref=f2e1130]: DATA
+            - generic [ref=f2e1131]:
+              - heading "Onboards" [level=3] [ref=f2e1132]
+              - generic [ref=f2e1133]:
+                - button "#1 VER" [disabled] [ref=f2e1134]:
+                  - generic [ref=f2e1135]: "#1"
+                  - strong [ref=f2e1136]: VER
+                - button "#4 NOR" [disabled] [ref=f2e1137]:
+                  - generic [ref=f2e1138]: "#4"
+                  - strong [ref=f2e1139]: NOR
+                - button "#5 BOR" [ref=f2e1140] [cursor=pointer]:
+                  - generic [ref=f2e1141]: "#5"
+                  - strong [ref=f2e1142]: BOR
+                - button "#6 HAD" [ref=f2e1143] [cursor=pointer]:
+                  - generic [ref=f2e1144]: "#6"
+                  - strong [ref=f2e1145]: HAD
+                - button "#7 DOO" [ref=f2e1146] [cursor=pointer]:
+                  - generic [ref=f2e1147]: "#7"
+                  - strong [ref=f2e1148]: DOO
+                - button "#10 GAS" [ref=f2e1149] [cursor=pointer]:
+                  - generic [ref=f2e1150]: "#10"
+                  - strong [ref=f2e1151]: GAS
+                - button "#12 ANT" [ref=f2e1152] [cursor=pointer]:
+                  - generic [ref=f2e1153]: "#12"
+                  - strong [ref=f2e1154]: ANT
+                - button "#14 ALO" [ref=f2e1155] [cursor=pointer]:
+                  - generic [ref=f2e1156]: "#14"
+                  - strong [ref=f2e1157]: ALO
+                - button "#16 LEC" [ref=f2e1158] [cursor=pointer]:
+                  - generic [ref=f2e1159]: "#16"
+                  - strong [ref=f2e1160]: LEC
+                - button "#18 STR" [ref=f2e1161] [cursor=pointer]:
+                  - generic [ref=f2e1162]: "#18"
+                  - strong [ref=f2e1163]: STR
+                - button "#22 TSU" [ref=f2e1164] [cursor=pointer]:
+                  - generic [ref=f2e1165]: "#22"
+                  - strong [ref=f2e1166]: TSU
+                - button "#23 ALB" [ref=f2e1167] [cursor=pointer]:
+                  - generic [ref=f2e1168]: "#23"
+                  - strong [ref=f2e1169]: ALB
+                - button "#27 HUL" [ref=f2e1170] [cursor=pointer]:
+                  - generic [ref=f2e1171]: "#27"
+                  - strong [ref=f2e1172]: HUL
+                - button "#30 LAW" [ref=f2e1173] [cursor=pointer]:
+                  - generic [ref=f2e1174]: "#30"
+                  - strong [ref=f2e1175]: LAW
+                - button "#31 OCO" [ref=f2e1176] [cursor=pointer]:
+                  - generic [ref=f2e1177]: "#31"
+                  - strong [ref=f2e1178]: OCO
+                - button "#44 HAM" [ref=f2e1179] [cursor=pointer]:
+                  - generic [ref=f2e1180]: "#44"
+                  - strong [ref=f2e1181]: HAM
+                - button "#55 SAI" [ref=f2e1182] [cursor=pointer]:
+                  - generic [ref=f2e1183]: "#55"
+                  - strong [ref=f2e1184]: SAI
+                - button "#63 RUS" [ref=f2e1185] [cursor=pointer]:
+                  - generic [ref=f2e1186]: "#63"
+                  - strong [ref=f2e1187]: RUS
+                - button "#81 PIA" [ref=f2e1188] [cursor=pointer]:
+                  - generic [ref=f2e1189]: "#81"
+                  - strong [ref=f2e1190]: PIA
+                - button "#87 BEA" [ref=f2e1191] [cursor=pointer]:
+                  - generic [ref=f2e1192]: "#87"
+                  - strong [ref=f2e1193]: BEA
+          - generic [ref=f2e1196]:
+            - generic [ref=f2e1198]:
+              - emphasis [ref=f2e1199]: ★
+              - text: INTERNATIONAL
+            - generic [ref=f2e1200]:
+              - button "▭" [ref=f2e1201] [cursor=pointer]
+              - button "Audio" [ref=f2e1202] [cursor=pointer]
+              - button "Close" [ref=f2e1203] [cursor=pointer]
+          - generic [ref=f2e1217]:
+            - generic [ref=f2e1219]: DATA
+            - generic [ref=f2e1220]:
+              - button "▭" [ref=f2e1221] [cursor=pointer]
+              - button "Muted" [ref=f2e1222] [cursor=pointer]
+              - button "Close" [ref=f2e1223] [cursor=pointer]
+          - generic [ref=f2e1237]:
+            - generic [ref=f2e1239]: TRACKER
+            - generic [ref=f2e1240]:
+              - button "▭" [ref=f2e1241] [cursor=pointer]
+              - button "Muted" [ref=f2e1242] [cursor=pointer]
+              - button "Close" [ref=f2e1243] [cursor=pointer]
+          - generic [ref=f2e1257]:
+            - generic: VER
+            - generic [ref=f2e1259]:
+              - button "▭" [ref=f2e1260] [cursor=pointer]
+              - button "Muted" [ref=f2e1261] [cursor=pointer]
+              - button "Close" [ref=f2e1262] [cursor=pointer]
+          - generic [ref=f2e1276]:
+            - generic: NOR
+            - generic [ref=f2e1278]:
+              - button "▭" [ref=f2e1279] [cursor=pointer]
+              - button "Muted" [ref=f2e1280] [cursor=pointer]
+              - button "Close" [ref=f2e1281] [cursor=pointer]
+        - generic [ref=f2e1294]:
+          - generic [ref=f2e1295]:
+            - generic [ref=f2e1296]: Circuit
+            - button "Close" [ref=f2e1297] [cursor=pointer]
+          - generic [ref=f2e1298]:
+            - strong [ref=f2e1299]: Track map unavailable
+            - generic [ref=f2e1300]: OpenF1 telemetry or a matching circuit asset has not loaded for this session yet.
+      - complementary [ref=f2e1309]:
+        - navigation [ref=f2e1310]:
+          - button "◍ Timing" [ref=f2e1311] [cursor=pointer]:
+            - generic [ref=f2e1312]: ◍
+            - text: Timing
+          - button "⟟ Strategy" [ref=f2e1313] [cursor=pointer]:
+            - generic [ref=f2e1314]: ⟟
+            - text: Strategy
+          - button "▤ Radio" [ref=f2e1315] [cursor=pointer]:
+            - generic [ref=f2e1316]: ▤
+            - text: Radio
+          - button "⚙ System" [ref=f2e1317] [cursor=pointer]:
+            - generic [ref=f2e1318]: ⚙
+            - text: System
+          - button "›" [ref=f2e1319] [cursor=pointer]
+        - generic [ref=f2e1321]:
+          - generic [ref=f2e1322]: ◍
+          - paragraph [ref=f2e1323]: Timing appears once telemetry syncs with the video.
+        - generic [ref=f2e1324]:
+          - heading "Team walls" [level=4] [ref=f2e1325]
+          - generic [ref=f2e1326]:
+            - button "McLaren" [ref=f2e1327] [cursor=pointer]
+            - button "Mercedes" [ref=f2e1328] [cursor=pointer]
+            - button "Red Bull" [ref=f2e1329] [cursor=pointer]
+            - button "Ferrari" [ref=f2e1330] [cursor=pointer]
+            - button "Williams" [ref=f2e1331] [cursor=pointer]
+            - button "Racing Bulls" [ref=f2e1332] [cursor=pointer]
+            - button "Aston Martin" [ref=f2e1333] [cursor=pointer]
+            - button "Haas" [ref=f2e1334] [cursor=pointer]
+            - button "Alpine" [ref=f2e1335] [cursor=pointer]
+            - button "Sauber" [ref=f2e1336] [cursor=pointer]
+  - generic [ref=f2e1069]:
+    - img [ref=f2e1070]
+    - button "Enter XR" [ref=f2e1073] [cursor=pointer]

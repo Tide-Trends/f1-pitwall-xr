@@ -1,0 +1,5 @@
+- generic [active] [ref=f4e1]:
+  - paragraph [ref=f4e4]: Connecting to F1 TV…
+  - generic [ref=f4e5]:
+    - img [ref=f4e6]
+    - button "Enter XR" [ref=f4e9] [cursor=pointer]

@@ -1,0 +1,13 @@
+{
+  "name": "@pitwall/electron",
+  "version": "1.0.0",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "dev": "electron .",
+    "build": "echo 'Package with electron-builder after castLabs ECS setup'"
+  },
+  "devDependencies": {
+    "electron": "github:castlabs/electron-releases#v42.3.3+wvcus"
+  }
+}

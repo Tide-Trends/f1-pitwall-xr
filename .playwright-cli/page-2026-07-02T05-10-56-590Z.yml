@@ -1,0 +1,32 @@
+- generic [ref=e4]:
+  - complementary [ref=e5]:
+    - generic [ref=e6]: Race control for F1 TV
+    - generic [ref=e7]:
+      - generic [ref=e8]: PW
+      - heading "PitWall XR" [level=1] [ref=e9]
+    - paragraph [ref=e10]: Build a multi-feed command wall from the broadcast, data channel, tracker, and every onboard.
+    - generic [ref=e11]:
+      - generic [ref=e13]: WORLD FEED
+      - generic [ref=e14]:
+        - generic [ref=e15]: DATA
+        - generic [ref=e16]: TRACKER
+        - generic [ref=e17]: OBC 16
+        - generic [ref=e18]: OBC 81
+    - generic [ref=e19]:
+      - strong [ref=e20]: Launch the desktop app
+      - generic [ref=e21]:
+        - text: In Finder, open
+        - code [ref=e22]: /Users/lukaah/AI/f1-pitwall-xr/scripts/start-pitwall.command
+      - generic [ref=e23]:
+        - text: "Or in Terminal:"
+        - code [ref=e24]: pnpm --dir /Users/lukaah/AI/f1-pitwall-xr start
+  - generic [ref=e25]:
+    - generic [ref=e26]:
+      - text: Desktop app required
+      - heading "Connect F1 TV" [level=2] [ref=e27]
+      - paragraph [ref=e28]: Use the official F1 TV sign-in window. Credentials stay inside the local desktop app.
+    - generic [ref=e29]:
+      - strong [ref=e30]: Open the Mac app
+      - paragraph [ref=e31]: DRM playback and F1 TV login require the local Electron app, not Safari or Chrome.
+    - button "Show direct login (usually blocked)" [ref=e32] [cursor=pointer]
+    - generic [ref=e33]: Unofficial fan project · Personal use only · Not affiliated with Formula One

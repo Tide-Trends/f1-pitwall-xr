@@ -1,0 +1,27 @@
+{
+  "name": "f1-pitwall-xr",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Immersive F1 pit wall — Lapz-inspired multi-stream viewer with 3D track for Mac and Quest 2",
+  "scripts": {
+    "setup:certs": "node scripts/generate-certs.mjs",
+    "predev": "node scripts/generate-certs.mjs",
+    "start": "pnpm dev",
+    "dev": "concurrently -n server,client,electron -c blue,green,yellow \"pnpm --filter @pitwall/server dev\" \"pnpm --filter @pitwall/client dev\" \"wait-on -t 120000 https://localhost:5173 https://localhost:8787/health && pnpm electron:dev\"",
+    "dev:web": "pnpm setup:certs && concurrently -n server,client -c blue,green \"pnpm --filter @pitwall/server dev\" \"pnpm --filter @pitwall/client dev\"",
+    "dev:open": "open https://localhost:5173",
+    "build": "pnpm -r build",
+    "electron:dev": "pnpm --filter @pitwall/electron dev",
+    "electron:build": "pnpm build && pnpm --filter @pitwall/electron build",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.8.2",
+    "wait-on": "^8.0.3"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@9.15.0"
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm install && pnpm --filter @pitwall/client build",
+  "outputDirectory": "apps/client/dist",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/((?!assets/).*)", "destination": "/index.html" }
+  ]
+}

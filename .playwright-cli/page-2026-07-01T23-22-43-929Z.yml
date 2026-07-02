@@ -1,0 +1,21 @@
+- generic [ref=f3e4]:
+  - complementary [ref=f3e5]:
+    - generic [ref=f3e6]: PW
+    - heading "PitWall XR" [level=1] [ref=f3e7]
+    - paragraph [ref=f3e8]: Multi-stream pit wall, live 3D track, and Quest 2 VR — powered by your F1 TV Pro account.
+    - generic [ref=f3e9]:
+      - strong [ref=f3e10]: Launch the desktop app
+      - generic [ref=f3e11]:
+        - text: In Finder, open
+        - code [ref=f3e12]: /Users/lukaah/AI/f1-pitwall-xr/scripts/start-pitwall.command
+      - generic [ref=f3e13]:
+        - text: "Or in Terminal:"
+        - code [ref=f3e14]: pnpm --dir /Users/lukaah/AI/f1-pitwall-xr start
+  - generic [ref=f3e15]:
+    - generic [ref=f3e16]:
+      - text: Account
+      - heading "Connect F1 TV" [level=2] [ref=f3e17]
+      - paragraph [ref=f3e18]: Sign in through F1 TV’s site — credentials stay on your Mac.
+    - paragraph [ref=f3e20]: F1 TV login only works in the PitWall XR desktop app, not in Safari or Chrome.
+    - button "Show direct login (usually blocked)" [ref=f3e21] [cursor=pointer]
+    - generic [ref=f3e22]: Unofficial fan project · Personal use only · Not affiliated with Formula One
