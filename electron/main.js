@@ -17,14 +17,24 @@ app.commandLine.appendSwitch('enable-features', 'EncryptedMediaExtensions');
 
 let mainWindow = null;
 
+const iconPngPath = path.join(__dirname, 'icon.png');
+const iconIcnsPath = path.join(__dirname, 'icon.icns');
+/** PNG for dock/window at runtime; .icns is used by electron-builder for the .app bundle. */
+const appIcon = fs.existsSync(iconPngPath)
+  ? iconPngPath
+  : fs.existsSync(iconIcnsPath)
+    ? iconIcnsPath
+    : undefined;
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1600,
     height: 1000,
     minWidth: 1200,
     minHeight: 700,
-    backgroundColor: '#050508',
+    backgroundColor: '#0d0d0f',
     title: 'PitWall XR',
+    icon: appIcon,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -88,6 +98,10 @@ ipcMain.handle('pitwall:complete-login', async (_event, payload) => {
 
 app.whenReady().then(async () => {
   registerAuthHandlers();
+
+  if (process.platform === 'darwin' && appIcon) {
+    app.dock.setIcon(appIcon);
+  }
 
   try {
     if (components?.whenReady) {

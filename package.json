@@ -13,7 +13,8 @@
     "build": "pnpm -r build",
     "electron:dev": "pnpm --filter @pitwall/electron dev",
     "electron:build": "pnpm build && pnpm --filter @pitwall/electron build",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "icons": "node scripts/generate-icons.mjs"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

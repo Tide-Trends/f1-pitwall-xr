@@ -22,34 +22,73 @@ Immersive F1 pit wall for **Mac desktop** and **Meta Quest 2 VR** — a Lapz-ins
 - **F1 TV Pro** subscription (included with US Apple TV+ — link accounts at [formula1.com](https://www.formula1.com/en-us/subscribe-to-f1-tv))
 - Mac (Apple Silicon or Intel)
 
-For **DRM live playback**, use Electron with [castLabs ECS](https://github.com/castlabs/electron-releases) (same as MultiViewer). Standard Electron/browser works for UI + replay testing.
+## What works where
 
-## Quick start
+| | Mac app (Electron) | Browser (Safari, Chrome, Quest) |
+|---|---|---|
+| F1 TV sign-in | Yes | No — sign in once via Mac app |
+| Live DRM streams | Yes (castLabs ECS) | No |
+| Replay archive | Yes | Yes |
+| Pit wall UI + sync | Yes | Yes |
+| 3D track + spatial preview | Yes | Yes |
+| Quest WebXR | — | Yes (HTTPS required) |
+
+After you sign in once on the Mac app, the local server stores your session in `apps/data/tokens.json`. Browsers on the same machine (or Quest on the same network / hosted URL) can then **Continue in browser** without signing in again.
+
+## Quick start (first time)
+
+### 1. Install dependencies
 
 ```bash
 cd f1-pitwall-xr
 pnpm install
+```
+
+### 2. Launch the Mac app
+
+**Option A — Desktop launcher (easiest)**
+
+```bash
+./scripts/install-desktop-launcher.sh
+```
+
+Then double-click **Start PitWall XR** on your Desktop.
+
+**Option B — Terminal**
+
+```bash
+pnpm start
+```
+
+This starts the API server, web UI, and Electron. When Electron opens:
+
+1. Click **Open F1 TV** and sign in with your F1 TV account
+2. When the F1 TV home screen loads, click **Continue to Pit Wall**
+3. Pick a replay session from the library
+
+### 3. Use the browser (optional)
+
+After sign-in, open [https://localhost:5173](https://localhost:5173) in Safari or Chrome for replay, UI, and spatial mode.
+
+Hosted copy (when deployed): [https://f1.lukaah.com](https://f1.lukaah.com)
+
+### Browser-only dev stack
+
+If you already signed in via the Mac app and the server is running with a saved session:
+
+```bash
 pnpm dev:web
 ```
 
-Open http://localhost:5173
-
-1. Sign in with F1 TV email/password
-2. **Replay** tab → pick season → select a past race
-3. Drag panels, tune sync, expand 3D track
-
-### Full stack (server + client + Electron)
-
-```bash
-pnpm dev
-```
+Opens the web UI + API without Electron. Good for UI work and replay testing. You still need a prior Mac-app sign-in for F1 TV access.
 
 ## Quest 2 VR
 
 1. Mac and Quest on same Wi-Fi (5 GHz)
-2. Find your Mac IP: `ipconfig getifaddr en0`
-3. On Quest Browser, open `http://<mac-ip>:5173` (or HTTPS with mkcert for WebXR)
-4. Load a session → click **VR Mode** → **Enter VR**
+2. Sign in on the Mac app first (session must exist on the server)
+3. Find your Mac IP: `ipconfig getifaddr en0`
+4. On Quest Browser, open `https://<mac-ip>:5173` (or [https://f1.lukaah.com](https://f1.lukaah.com) when hosted)
+5. Click **Continue in browser** if prompted, then load a session → **Spatial** → **Enter VR**
 
 > Quest 2 hardware limits ~1–2 simultaneous video decodes. VR mode shows 3D track + UI; use desktop for full 6-stream wall, or stream-swap in VR.
 
@@ -59,7 +98,8 @@ pnpm dev
 f1-pitwall-xr/
 ├── apps/
 │   ├── client/     React + R3F + Shaka + WebXR UI
-│   └── server/     Express API + F1 TV + SignalR telemetry
+│   ├── server/     Express API + F1 TV + SignalR telemetry
+│   └── data/       tokens.json, layouts (created at runtime)
 ├── packages/
 │   ├── f1tv-client/   Auth, archive, playback URLs
 │   ├── sync-engine/   Multi-stream sync
@@ -67,6 +107,9 @@ f1-pitwall-xr/
 │   ├── layout-engine/ Presets + persistence
 │   └── shared/        Types
 ├── electron/       Desktop shell
+├── scripts/
+│   ├── start-pitwall.command          Double-click launcher
+│   └── install-desktop-launcher.sh    Copy launcher to ~/Desktop
 └── assets/f1-circuits/  Track GeoJSON (cloned)
 ```
 
@@ -74,7 +117,9 @@ f1-pitwall-xr/
 
 | Endpoint | Description |
 |---|---|
-| `POST /api/auth/login` | F1 TV credentials |
+| `GET /api/auth/status` | Whether server has a valid F1 TV session |
+| `POST /api/auth/login` | F1 TV credentials (usually blocked) |
+| `POST /api/auth/tokens` | Sync tokens from Electron to server |
 | `GET /api/sessions/live` | Live sessions |
 | `GET /api/sessions/replay?season=2025` | Archive |
 | `GET /api/sessions/:contentId?kind=replay` | Session + channels |
@@ -91,6 +136,10 @@ F1 live streams use Widevine DRM. For full playback:
 3. See [MultiViewer docs](https://multiviewer.app/docs) for reference
 
 Replay VOD may work in browser without castLabs depending on session age.
+
+## Web hosting
+
+See [docs/web-hosting.md](docs/web-hosting.md) for Vercel + nginx setup with `f1.lukaah.com`.
 
 ## License
 

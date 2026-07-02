@@ -86,15 +86,19 @@ export default function App() {
         .then(() => useAppStore.setState({ authenticated: true, tokens }))
         .catch(() => useAppStore.setState({ authenticated: false, tokens: null }))
         .finally(() => setAuthReady(true));
-    } else {
-      pitwallApi
-        .authStatus()
-        .then((status) => {
-          if (status.authenticated) useAppStore.setState({ authenticated: true, tokens: null });
-        })
-        .catch(() => {})
-        .finally(() => setAuthReady(true));
+      return;
     }
+    pitwallApi
+      .authStatus()
+      .then((status) => {
+        if (status.authenticated) {
+          useAppStore.setState({ authenticated: true, tokens: null });
+        }
+      })
+      .catch(() => {
+        /* server offline — LoginScreen shows setup instructions */
+      })
+      .finally(() => setAuthReady(true));
   }, []);
 
   useSyncEngine();

@@ -72,19 +72,15 @@ select option { background: #1c1c22; }
   display: block;
   flex-shrink: 0;
 }
-.brand-mark-bg {
-  fill: #0b0b0e;
-  stroke: rgba(255, 255, 255, 0.14);
-  stroke-width: 1;
-}
-.brand-mark-wall { fill: rgba(255, 255, 255, 0.9); }
-.brand-mark-track {
+.brand-mark-bg { fill: #0d0d0f; }
+.brand-mark-line {
   fill: none;
-  stroke: var(--accent);
-  stroke-width: 4;
-  stroke-linecap: round;
+  stroke: rgba(255, 255, 255, 0.92);
 }
-.brand-mark-dot { fill: var(--accent); }
+.brand-mark-accent {
+  fill: none;
+  stroke: #e10600;
+}
 
 /* ============ Auth ============ */
 .auth-page {
@@ -251,12 +247,138 @@ select option { background: #1c1c22; }
 .auth-step-body strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 2px; }
 .auth-step-body p { font-size: 12px; color: var(--text-secondary); line-height: 1.45; }
 
-.auth-blocked {
-  margin-top: 20px; padding: 16px; border-radius: var(--radius);
-  background: rgba(0, 0, 0, 0.2); border: 1px dashed var(--border);
-  font-size: 13px; color: var(--text-secondary); line-height: 1.5;
+.auth-compare {
+  margin-top: 28px;
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
 }
-.auth-blocked strong { display: block; color: var(--text); margin-bottom: 4px; }
+.auth-compare-title {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.auth-compare-grid { margin: 0; display: grid; gap: 12px; }
+.auth-compare-grid div { display: grid; gap: 2px; }
+.auth-compare-grid dt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.auth-compare-grid dd {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.auth-browser-ready {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+}
+.auth-browser-ready p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.auth-first-time {
+  margin-top: 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-subtle);
+  background: rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+.auth-first-time-toggle {
+  width: 100%;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.auth-first-time-toggle:hover { background: rgba(255, 255, 255, 0.03); }
+.auth-first-time-body {
+  display: none;
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+.auth-first-time.open .auth-first-time-body { display: block; padding-top: 14px; }
+.auth-first-time-lead {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.auth-option {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+}
+.auth-option-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.auth-option strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.auth-option p,
+.auth-option-note,
+.auth-flow-summary {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+.auth-option-note { margin-top: 6px; margin-bottom: 0; }
+.auth-code-block {
+  display: block;
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text);
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+.auth-flow-summary {
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+.auth-flow-summary a,
+.auth-notice a,
+.auth-option a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.auth-recheck { margin-top: 4px; }
+
+.auth-notice em { font-style: normal; color: var(--text); }
 
 .auth-link { margin-top: 16px; font-size: 12px; color: var(--text-tertiary); }
 .auth-link:hover { color: var(--text-secondary); }

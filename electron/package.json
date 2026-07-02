@@ -5,7 +5,19 @@
   "main": "main.js",
   "scripts": {
     "dev": "electron .",
-    "build": "echo 'Package with electron-builder after castLabs ECS setup'"
+    "build": "echo 'Package with electron-builder after castLabs ECS setup'",
+    "icons": "node ../scripts/generate-icons.mjs"
+  },
+  "build": {
+    "appId": "com.pitwall.xr",
+    "productName": "PitWall XR",
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "icon": "icon.icns",
+      "category": "public.app-category.sports"
+    }
   },
   "devDependencies": {
     "electron": "github:castlabs/electron-releases#v42.3.3+wvcus"
