@@ -275,6 +275,12 @@ select option { background: #1c1c22; }
   color: var(--text-secondary);
   line-height: 1.45;
 }
+.auth-compare-note {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  line-height: 1.45;
+}
 
 .auth-browser-ready {
   margin-top: 20px;
@@ -290,12 +296,33 @@ select option { background: #1c1c22; }
   line-height: 1.5;
 }
 
+.auth-browser-waiting {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--border-subtle);
+}
+.auth-browser-waiting p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.auth-browser-waiting em { font-style: normal; color: var(--text); }
+
 .auth-first-time {
   margin-top: 16px;
+  padding: 16px;
   border-radius: var(--radius);
   border: 1px solid var(--border-subtle);
   background: rgba(0, 0, 0, 0.18);
-  overflow: hidden;
+}
+.auth-first-time-title {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
 }
 .auth-first-time-toggle {
   width: 100%;
@@ -320,6 +347,39 @@ select option { background: #1c1c22; }
   font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.5;
+}
+
+.auth-mac-steps {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.auth-mac-step {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+}
+.auth-mac-options {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+.auth-mac-options strong { color: var(--text); }
+.auth-code-inline {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text);
+  word-break: break-all;
 }
 .auth-option {
   margin-bottom: 14px;
@@ -371,7 +431,9 @@ select option { background: #1c1c22; }
 }
 .auth-flow-summary a,
 .auth-notice a,
-.auth-option a {
+.auth-option a,
+.auth-browser-ready a,
+.auth-mac-step a {
   color: var(--text);
   text-decoration: underline;
   text-underline-offset: 2px;

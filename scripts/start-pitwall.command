@@ -62,16 +62,17 @@ fi
 
 echo ""
 echo "Launching server, web UI, and Electron…"
-echo "When the app opens: Open F1 TV → sign in → Continue to Pit Wall"
 echo ""
-echo "Browser UI (after sign-in): https://localhost:5173"
+echo "  1. Open F1 TV → sign in with your F1 TV account"
+echo "  2. Click Continue to Pit Wall"
+echo "  3. Open https://localhost:5173 in Safari or Chrome for replay / spatial mode"
 echo ""
 
-if ! pnpm dev; then
+if ! pnpm start; then
   alert "PitWall XR stopped with an error.
 
 Check the Terminal window for details, or run:
-  cd \"$ROOT\" && pnpm dev"
+  cd \"$ROOT\" && pnpm start"
   read -r -p "Press Enter to close…"
   exit 1
 fi

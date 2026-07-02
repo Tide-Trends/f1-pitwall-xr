@@ -15,3 +15,4 @@ apps/data/
 **/tokens.json
 .vercel
 .playwright-cli/
+assets/icon/icon.iconset/

@@ -21,7 +21,6 @@ export function LoginScreen() {
   const [inElectron, setInElectron] = useState(false);
   const [step, setStep] = useState<'idle' | 'f1tv-open' | 'finishing'>('idle');
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [showFirstTime, setShowFirstTime] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [serverAuth, setServerAuth] = useState<ServerAuth>({
@@ -55,6 +54,13 @@ export function LoginScreen() {
     return () => clearTimeout(t);
   }, []);
 
+  // Auto-skip when the local server already has a valid session (browser path).
+  useEffect(() => {
+    if (!inElectron && serverAuth.checked && serverAuth.authenticated) {
+      useAppStore.setState({ authenticated: true, tokens: null });
+    }
+  }, [inElectron, serverAuth.checked, serverAuth.authenticated]);
+
   const handleContinueInBrowser = async () => {
     setStep('finishing');
     setError(null);
@@ -76,7 +82,7 @@ export function LoginScreen() {
 
   const handleOpenF1TV = async () => {
     if (!window.pitwall?.openF1TV) {
-      setError('F1 TV sign-in only works inside the Mac app. Use the steps under “First time?” below.');
+      setError('F1 TV sign-in only works inside the Mac app. See “First time on Mac?” below.');
       return;
     }
     setError(null);
@@ -166,31 +172,19 @@ export function LoginScreen() {
             <h3 className="auth-compare-title">What works where</h3>
             <dl className="auth-compare-grid">
               <div>
-                <dt>Mac app</dt>
-                <dd>F1 TV sign-in, live DRM streams, full pit wall</dd>
+                <dt>Mac app only</dt>
+                <dd>F1 TV sign-in, live DRM streams, full multi-feed pit wall</dd>
               </div>
               <div>
-                <dt>Browser</dt>
+                <dt>Web browser</dt>
                 <dd>Replay archive, UI, 3D track, spatial preview, Quest VR</dd>
               </div>
             </dl>
+            <p className="auth-compare-note">
+              Sign in once from the Mac app. After that, Safari, Chrome, and Quest can reuse the
+              same local session.
+            </p>
           </section>
-
-          {!inElectron && (
-            <div className="auth-notice">
-              <strong>Already signed in on this Mac?</strong>
-              <span>
-                If you used the Mac app earlier, the local server may still have your session.
-                Click <em>Continue in browser</em> on the right.
-              </span>
-              <span>
-                Hosted copy:{' '}
-                <a href={HOSTED_URL} target="_blank" rel="noreferrer">
-                  {HOSTED_URL.replace('https://', '')}
-                </a>
-              </span>
-            </div>
-          )}
         </aside>
 
         <section className="auth-panel">
@@ -200,13 +194,21 @@ export function LoginScreen() {
                 ? 'Mac app'
                 : canContinueInBrowser
                   ? 'Server session found'
-                  : 'Get started'}
+                  : 'Web browser'}
             </span>
-            <h2>{inElectron ? 'Sign in with F1 TV' : 'Connect to PitWall XR'}</h2>
+            <h2>
+              {inElectron
+                ? 'Sign in with F1 TV'
+                : canContinueInBrowser
+                  ? 'Continue in browser'
+                  : 'Connect to PitWall XR'}
+            </h2>
             <p>
               {inElectron
                 ? 'Use the official F1 TV window so cookies, subscription checks, and DRM stay on your Mac.'
-                : 'Sign in once from the Mac app. After that, Safari, Chrome, and Quest can use the same session.'}
+                : canContinueInBrowser
+                  ? 'This server already has your F1 TV session. Jump straight into replay and spatial mode.'
+                  : 'You need the Mac app once to sign in. After that, the browser works for replay and spatial mode.'}
             </p>
           </header>
 
@@ -247,11 +249,16 @@ export function LoginScreen() {
             </ol>
           ) : (
             <>
-              {canContinueInBrowser && (
+              {canContinueInBrowser ? (
                 <div className="auth-browser-ready">
                   <p>
-                    This server already has a valid F1 TV session
-                    {serverAuth.hasSubscriptionToken ? ' with subscription access' : ''}.
+                    Session ready
+                    {serverAuth.hasSubscriptionToken ? ' with subscription access' : ''}. Open{' '}
+                    <a href={LOCAL_URL}>{LOCAL_URL.replace('https://', '')}</a> or{' '}
+                    <a href={HOSTED_URL} target="_blank" rel="noreferrer">
+                      f1.lukaah.com
+                    </a>{' '}
+                    on any device on this network.
                   </p>
                   <button
                     type="button"
@@ -262,80 +269,79 @@ export function LoginScreen() {
                     {step === 'finishing' ? 'Connecting…' : 'Continue in browser'}
                   </button>
                 </div>
+              ) : (
+                <div className="auth-browser-waiting">
+                  <p>
+                    No server session yet. Complete the Mac steps below, then click{' '}
+                    <em>Check for server session</em>.
+                  </p>
+                </div>
               )}
 
-              <div className={`auth-first-time${showFirstTime ? ' open' : ''}`}>
-                <button
-                  type="button"
-                  className="auth-first-time-toggle"
-                  onClick={() => setShowFirstTime((v) => !v)}
-                  aria-expanded={showFirstTime}
-                >
-                  First time? Start the Mac app
-                </button>
-                {showFirstTime && (
-                  <div className="auth-first-time-body">
-                    <p className="auth-first-time-lead">
-                      You need the Mac app once to sign in with F1 TV. After that, the browser works
-                      for replay and spatial mode.
-                    </p>
+              <section className="auth-first-time open" aria-label="First time on Mac">
+                <h3 className="auth-first-time-title">First time on Mac?</h3>
+                <p className="auth-first-time-lead">
+                  The Mac app handles F1 TV sign-in and live DRM. Do this once — then the browser
+                  works for replay and spatial mode.
+                </p>
 
-                    <div className="auth-option">
-                      <span className="auth-option-label">Option A — easiest</span>
-                      <strong>Double-click the Desktop launcher</strong>
+                <ol className="auth-mac-steps">
+                  <li className="auth-mac-step">
+                    <span className="auth-step-index">1</span>
+                    <div className="auth-step-body">
+                      <strong>Start PitWall XR</strong>
+                      <p>Pick one:</p>
+                      <ul className="auth-mac-options">
+                        <li>
+                          <strong>Desktop launcher</strong> — run{' '}
+                          <code className="auth-code-inline">./scripts/install-desktop-launcher.sh</code>
+                          , then double-click <code className="auth-code-inline">Start PitWall XR</code>{' '}
+                          on your Desktop
+                        </li>
+                        <li>
+                          <strong>Terminal</strong> — from the project folder:
+                          <code className="auth-code-block">cd f1-pitwall-xr && pnpm install && pnpm start</code>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li className="auth-mac-step">
+                    <span className="auth-step-index">2</span>
+                    <div className="auth-step-body">
+                      <strong>Sign in via F1 TV</strong>
                       <p>
-                        Copy the launcher to your Desktop, then double-click{' '}
-                        <code>Start PitWall XR</code>.
-                      </p>
-                      <code className="auth-code-block">
-                        ./scripts/install-desktop-launcher.sh
-                      </code>
-                      <p className="auth-option-note">
-                        Creates <code>~/Desktop/Start PitWall XR.command</code>. Electron opens
-                        automatically.
+                        In the Electron window: <em>Open F1 TV</em> → sign in →{' '}
+                        <em>Continue to Pit Wall</em>.
                       </p>
                     </div>
-
-                    <div className="auth-option">
-                      <span className="auth-option-label">Option B — Terminal</span>
-                      <strong>Run from the project folder</strong>
-                      <p>Full stack: server, web UI, and Electron.</p>
-                      <code className="auth-code-block">cd f1-pitwall-xr && pnpm install && pnpm start</code>
-                    </div>
-
-                    <div className="auth-option">
-                      <span className="auth-option-label">Browser-only dev</span>
-                      <strong>UI + replay without Electron</strong>
+                  </li>
+                  <li className="auth-mac-step">
+                    <span className="auth-step-index">3</span>
+                    <div className="auth-step-body">
+                      <strong>Return to this browser</strong>
                       <p>
-                        Requires an existing server session (sign in via Mac app first). Opens{' '}
-                        <a href={LOCAL_URL}>{LOCAL_URL.replace('https://', '')}</a>.
+                        Open{' '}
+                        <a href={LOCAL_URL}>{LOCAL_URL.replace('https://', '')}</a> or{' '}
+                        <a href={HOSTED_URL} target="_blank" rel="noreferrer">
+                          f1.lukaah.com
+                        </a>{' '}
+                        and click <em>Continue in browser</em>.
                       </p>
-                      <code className="auth-code-block">cd f1-pitwall-xr && pnpm install && pnpm dev:web</code>
                     </div>
+                  </li>
+                </ol>
 
-                    <p className="auth-flow-summary">
-                      <strong>What happens:</strong> Electron opens → sign in via F1 TV → session
-                      saved on this Mac → open{' '}
-                      <a href={LOCAL_URL}>{LOCAL_URL.replace('https://', '')}</a> or{' '}
-                      <a href={HOSTED_URL} target="_blank" rel="noreferrer">
-                        f1.lukaah.com
-                      </a>{' '}
-                      in any browser.
-                    </p>
-
-                    {!canContinueInBrowser && (
-                      <button
-                        type="button"
-                        className="btn btn-secondary btn-block auth-recheck"
-                        onClick={() => void checkServerAuth()}
-                        disabled={!serverAuth.checked && step === 'finishing'}
-                      >
-                        Check for server session
-                      </button>
-                    )}
-                  </div>
+                {!canContinueInBrowser && (
+                  <button
+                    type="button"
+                    className="btn btn-secondary btn-block auth-recheck"
+                    onClick={() => void checkServerAuth()}
+                    disabled={!serverAuth.checked && step === 'finishing'}
+                  >
+                    {serverAuth.checked ? 'Check for server session' : 'Checking…'}
+                  </button>
                 )}
-              </div>
+              </section>
             </>
           )}
 
